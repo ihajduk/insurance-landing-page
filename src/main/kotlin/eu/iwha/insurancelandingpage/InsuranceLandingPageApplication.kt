@@ -1,9 +1,10 @@
 package eu.iwha.insurancelandingpage
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
 
-@SpringBootApplication
+@SpringBootApplication(exclude = [DataSourceAutoConfiguration::class])
 class InsuranceLandingPageApplication
 
 fun main(args: Array<String>) {
