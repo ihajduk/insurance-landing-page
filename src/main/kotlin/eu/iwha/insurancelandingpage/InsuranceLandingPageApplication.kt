@@ -8,5 +8,6 @@ import org.springframework.boot.runApplication
 class InsuranceLandingPageApplication
 
 fun main(args: Array<String>) {
-    runApplication<InsuranceLandingPageApplication>(*args)
+    val appContext = runApplication<InsuranceLandingPageApplication>(*args)
+    appContext.start()
 }
