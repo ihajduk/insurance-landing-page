@@ -14,6 +14,10 @@ class OnLocalStartup(private val userRepository: UserRepository) {
 
     @EventListener
     fun onApplicationEvent(event: ContextStartedEvent) {
+        populateSampleUser()
+    }
+
+    private fun populateSampleUser() {
         val sampleUser = User(UserId("1"), "Jan")
         logger.info { "Creating sample user $sampleUser" }
         userRepository.addUser(sampleUser)

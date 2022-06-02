@@ -1,17 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App, {AppProps} from './App';
 import reportWebVitals from './reportWebVitals';
+import {RestUserApi} from "./api/UserApi";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+
+const userApi = new RestUserApi()
+const appProps: AppProps = { userApi }
+
+const application = (
   <React.StrictMode>
-    <App />
+    <App {...appProps}/>
   </React.StrictMode>
 );
+
+ReactDOM.render(application, document.getElementById('root'))
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
