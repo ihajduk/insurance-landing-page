@@ -1,8 +1,8 @@
 package integration.eu.iwha.insurancelandingpage
 
 import eu.iwha.insurancelandingpage.InsuranceLandingPageApplication
-import eu.iwha.insurancelandingpage.adapter.InMemoryUserRepository
-import eu.iwha.insurancelandingpage.domain.User
+import eu.iwha.insurancelandingpage.api.CreateUserJson
+import eu.iwha.insurancelandingpage.domain.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -18,13 +18,13 @@ abstract class BaseIntegrationTest extends Specification {
     private TestRestTemplate restTemplate
 
     @Autowired
-    private InMemoryUserRepository userRepository
+    private UserRepository userRepository
 
     protected ResponseEntity<Map> getUser(String id) {
-        restTemplate.getForEntity("/user/$id", Map)
+        restTemplate.getForEntity("/users/$id", Map)
     }
 
-    protected void addUser(User user) {
-        userRepository.addUser(user)
+    protected ResponseEntity<Map> addUser(CreateUserJson userJson) {
+        return restTemplate.postForEntity("/users", userJson, Map)
     }
 }

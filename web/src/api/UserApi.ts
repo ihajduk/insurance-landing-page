@@ -7,7 +7,7 @@ export interface UserApi {
 
 export class RestUserApi implements UserApi {
     private url: String = "http://localhost:8080"
-    private path: String = "/user"
+    private path: String = "/users"
 
     loadUser(userId: String): Promise<UserView> {
         return axios.get(`${this.url}${this.path}/${userId}`).then(res => {
